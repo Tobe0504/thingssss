@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>The falz 🤌🏾</title>
+    <style>
+      body {
+        margin: 0;
+        background: white;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+        overflow: hidden;
+        font-family: sans-serif;
+      }
+
+      #hand {
+        width: 300px;
+        opacity: 0;
+        transform: scale(0.5) rotate(-25deg);
+        filter: blur(8px);
+        transition: all 1.5s ease;
+
+        -webkit-mask-image: radial-gradient(
+          circle at center,
+          rgba(0, 0, 0, 1) 60%,
+          rgba(0, 0, 0, 0) 100%
+        );
+        mask-image: radial-gradient(
+          circle at center,
+          rgba(0, 0, 0, 1) 60%,
+          rgba(0, 0, 0, 0) 100%
+        );
+        -webkit-mask-repeat: no-repeat;
+        mask-repeat: no-repeat;
+        -webkit-mask-size: 100% 100%;
+        mask-size: 100% 100%;
+      }
+
+      #hand.reveal {
+        opacity: 1;
+        transform: scale(1) rotate(0deg);
+        filter: blur(0);
+      }
+
+      button {
+        margin-top: 2rem;
+        padding: 10px 25px;
+        font-size: 1rem;
+        border: none;
+        background: black;
+        color: white;
+        cursor: pointer;
+        border-radius: 8px;
+        transition: background 0.3s;
+      }
+
+      button:hover {
+        background: #333;
+      }
+    </style>
+  </head>
+  <body>
+    <img
+      src="https://res.cloudinary.com/dmpdhnjqs/image/upload/v1749494615/IMG_0280-removebg-preview_g489iu.png"
+      alt="Hand Gesture"
+      id="hand"
+    />
+
+    <button onclick="triggerReveal()">Reveal ✨</button>
+
+    <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
+
+    <script>
+      function triggerReveal() {
+        const hand = document.getElementById("hand");
+        hand.classList.add("reveal");
+
+        setTimeout(() => {
+          confetti({
+            particleCount: 150,
+            spread: 90,
+            origin: { y: 0.6 },
+            scalar: 1.2,
+          });
+        }, 1500);
+      }
+    </script>
+  </body>
+</html>
